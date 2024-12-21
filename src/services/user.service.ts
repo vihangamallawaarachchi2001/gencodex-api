@@ -134,3 +134,15 @@ const deleteUSer = async ( id: string) => {
 
     return 'User deleted successfully';
 }
+
+const userService = {
+    signup,
+    login,
+    getProfile,
+    updateProfile,
+    changePassword,
+    forgotPassword,
+    deleteUSer
+}
+
+export default userService;
