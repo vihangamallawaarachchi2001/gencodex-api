@@ -1,31 +1,31 @@
 import { z } from "zod";
 
- const signupRequestScema = z.object({
+export const signupRequestScema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
     name: z.string().min(3),
 })
 
- const signupResponseSchema = z.object({
+export const signupResponseSchema = z.object({
     message: z.string(),
     token: z.string(),
 })
 
- const loginRequestSchema = z.object({
+export const loginRequestSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
 })
 
- const loginResponseSchema = z.object({
+export const loginResponseSchema = z.object({
     message: z.string(),
     token: z.string(),
 })
 
- const getProfileRequestSchema = z.object({
-    token: z.string(),
+export const getProfileRequestSchema = z.object({
+    id: z.string(),
 })
 
- const getProfileResponseSchema = z.object({
+export const getProfileResponseSchema = z.object({
     user: z.object({
         email: z.string(),
         name: z.string(),
@@ -36,67 +36,53 @@ import { z } from "zod";
     message: z.string(),
 })
 
- const updateProfileRequestSchema = z.object({
-    token: z.string(),
+export const updateProfileRequestSchema = z.object({
     email: z.string().email(),
     name: z.string(),
 })
 
- const updateProfileResponseSchema = z.object({
+export const updateProfileResponseSchema = z.object({
     message: z.string(),
 })
 
- const changePasswordRequestSchema = z.object({
+export const changePasswordRequestSchema = z.object({
     token: z.string(),
     oldPassword: z.string().min(6),
     newPassword: z.string().min(6),
 })
 
- const changePasswordResponseSchema = z.object({
+export const changePasswordResponseSchema = z.object({
     message: z.string(),
 })
 
- const forgotPasswordRequestSchema = z.object({
+export const forgotPasswordRequestSchema = z.object({
     email: z.string().email(),
+    password: z.string().min(6),
 })
 
- const forgotPasswordResponseSchema = z.object({
+export const forgotPasswordResponseSchema = z.object({
     message: z.string(),
 })
 
- const logoutRequestSchema = z.object({
+export const deleteUserRequestSchema = z.object({
     token: z.string(),
 })
 
- const logoutResponseSchema = z.object({
+export const deleteUserResponseSchema = z.object({
     message: z.string(),
 })
 
- const deleteUserRequestSchema = z.object({
-    token: z.string(),
-})
-
- const deleteUserResponseSchema = z.object({
-    message: z.string(),
-})
-
-const userSchema = {
-    signupRequestScema,
-    signupResponseSchema,
-    loginRequestSchema,
-    loginResponseSchema,
-    getProfileRequestSchema,
-    getProfileResponseSchema,
-    updateProfileRequestSchema,
-    updateProfileResponseSchema,
-    changePasswordRequestSchema,
-    changePasswordResponseSchema,
-    forgotPasswordRequestSchema,
-    forgotPasswordResponseSchema,
-    logoutRequestSchema,
-    logoutResponseSchema,
-    deleteUserRequestSchema,
-    deleteUserResponseSchema,
-}
-
-export default userSchema;
+export type signupRequest = z.infer<typeof  signupRequestScema>
+export type signupResponse = z.infer<typeof signupResponseSchema>
+export type loginRequest = z.infer<typeof   loginRequestSchema>
+export type loginResponse = z.infer<typeof  loginResponseSchema>
+export type getProfileRequest = z.infer<typeof  getProfileRequestSchema>
+export type getProfileResponse = z.infer<typeof getProfileResponseSchema>
+export type updateProfileRequest = z.infer<typeof  updateProfileRequestSchema >
+export type updateProfileResponse = z.infer<typeof updateProfileResponseSchema >
+export type changePasswordRequest = z.infer<typeof changePasswordRequestSchema >
+export type changePasswordResponse = z.infer<typeof changePasswordResponseSchema >
+export type forgotPasswordRequest = z.infer<typeof forgotPasswordRequestSchema >
+export type forgotPasswordResponse = z.infer<typeof forgotPasswordResponseSchema >
+export type deleteUserRequest = z.infer<typeof deleteUserRequestSchema >
+export type deleteUserResponse = z.infer<typeof deleteUserResponseSchema >
